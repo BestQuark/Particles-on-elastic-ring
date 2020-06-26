@@ -5,3 +5,9 @@
 - Find the solution for the IVP Problem (get two output) 
 - Put all the solutions into Solve_IVP_Particles.m (maybe for the BVP Problem)
 - Fixed the plot_function.m into plot_function_new.m which plot two particles and the solution for the IVP solution
+
+## Second Week:
+### Tuesday:
+#### Solve IVP for n particles
+- Modified diff_eqns, now it solves n particles at the same time
+- It is missing a plot function for the n particles
