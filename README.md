@@ -11,3 +11,7 @@
 #### Solve IVP for n particles
 - Modified diff_eqns, now it solves n particles at the same time
 - It is missing a plot function for the n particles
+
+#### Include forces function 
+- Calculate forces at every particle for a given configuration
+- Calculates potential at every particle for a given configuration (not used for the forces)
