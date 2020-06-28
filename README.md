@@ -11,7 +11,7 @@
 #### Solve IVP for n particles
 - Modified diff_eqns, now it solves n particles at the same time
 - It is missing a plot function for the n particles
-##### Hy - Solve IVP for n particles
+##### - Hy - Solve IVP for n particles
 - Solved n particles with length (doesn't depend on the output of previous particles) 
 - Fixed Plot Function for this problem.
 #### Include forces function 
