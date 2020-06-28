@@ -6,7 +6,7 @@ function output_IVP = solve_IVP(x0, p0,n ,L ,s,params)
 %        i th row is x1,x2,x3 position for i th particle
 %   p0 : initial condition for p(0) for every particle (nx3)
 %        i th row is p1,p2,p3 force for i th particle
-%   s : end of rod interval (usually 1),scalar, as "time t"
+%   s : end of rod interval (usually 1),scalar
 %   n  : number of particles
 %   L  : length of each rod
 % Function Outputs:
@@ -18,17 +18,12 @@ function output_IVP = solve_IVP(x0, p0,n ,L ,s,params)
 % Initial conditions, initialize Y0
 Y0 = zeros(1,6*n);
 
-%stores values of x and p in Y0
+%stores 
 for i=1:n
     Y0(6*(i-1)+1:6*i) =  [x0(i,:) p0(i,:)];
 end
 
-% Solve ODEs by ode45
-% [t,y] = ode45(odefun,tspan,y0,options)
-% differential function dY : diff_eqns, accepts input t,Y
-% time span : [0 s]
-% Y0 : initial value of Y
-% params.ode_options : error threshold
+% Solve ODEs
 [t,sol] = ode45(@(t,Y) diff_eqns(t,Y,n,L,params),[0 s], Y0,params.ode_options);
 
 solution = reshape(sol, [length(t),6*n]);
