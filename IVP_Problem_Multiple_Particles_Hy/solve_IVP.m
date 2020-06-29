@@ -2,9 +2,12 @@ function output_IVP = solve_IVP(x0,p0,tf,params)
 
 % This function solves the IVP at the current value of p0
 % Function Inputs:
-%   x0 : initial condition for x(0)
-%   p0 : initial condition for p(0)
-%   tf : end of time interval
+%   x0 : initial condition for x(0) for every particle (nx3)
+%        i th row is x1,x2,x3 position for i th particle
+%   p0 : initial condition for p(0) for every particle (nx3)
+%        i th row is p1,p2,p3 force for i th particle
+%   tf : end of time interval,
+%        also refers to s:= the end of rod interval(usually 1)
 % Function Outputs:
 %   output_IVP.t : nx1 vector of time values along solution
 %   output_IVP.x : nx3 matrix containing the solution for x(t)
