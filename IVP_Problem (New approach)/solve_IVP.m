@@ -31,10 +31,16 @@ end
 % params.ode_options : error threshold
 [t,sol] = ode45(@(t,Y) diff_eqns(t,Y,n,L,params),[0 s], Y0,params.ode_options);
 
+% each row in the sol array y corresponds to 
+% a value returned in column vector t.
+% rearrange/transpose s.t. the ith row is the ith Y
 solution = reshape(sol, [length(t),6*n]);
 
 % Store vectors t, x, and p
 output_IVP.t = t;
+% x1 is to take the i th row 1st col x11, 7th col x21,...,till end
+% and taking all possible rows i from 1 to end
+% similarly for other variables
 output_IVP.x1 = solution(:,1:6:end);
 output_IVP.x2 = solution(:,2:6:end);
 output_IVP.x3 = solution(:,3:6:end);

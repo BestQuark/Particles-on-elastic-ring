@@ -13,6 +13,7 @@ function output = main_IVP_solver
 %n = 2;
 %L = [0.5 0.5];
 
+
 %EXAMPLE: 3 PARTICLES
 
 x0 = [0 0 0; 1 2 3; 0 -2 -2];
