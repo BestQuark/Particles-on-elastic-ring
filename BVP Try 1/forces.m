@@ -1,13 +1,17 @@
-function output_Forces = forces(config,n,Req)
+function output_Forces = forces(config,n,Req,params)
 %Input:
 % config: configurations of the particles, a struct stores x1,x2,x3
 %          p1,p2,p3...info
 % n:number of particles
 % Req: a constant of equilibrium distance, pre-assumed
-%FORCES Calculates forces between n particles
-% Output: output_Forces 2xn matrix where 
+% params: used for getting values of coefficients in different
+%             potential formulas
+% FORCES Calculates forces between n particles
+% Output: 
+% output_Forces:  2xn matrix where 
 % output_Forcesij is the ith component of the force on
 % the jth particle
+
    % symbolic values of locations (x,y)
     syms xi yi xj yj
     syms x1 y1 x2 y2;
@@ -19,11 +23,16 @@ function output_Forces = forces(config,n,Req)
     Vij(x1,y1,x2,y2) = (Rij(x1,y1,x2,y2) - Req)^2;
 
     %Lennard Jones potential
+    % assume epsilon = 0.3
     
-    %Vij(x1,y1,x2,y2) = 0.3* ((Req/Rij)^(12) - (Req/Rij)^6 );
+    %epsilon = params.LJepsilon;
+    %Vij(x1,y1,x2,y2) = epsilon * ((Req/Rij)^(12) - (Req/Rij)^6);
     
-    %Coulumblike potential
-    %Vij(x1,y1,x2,y2) = -Rij(x1,y1,x2,y2)^(-1);
+    %Coulumblike potential, inverse of d^2
+    %original formula: Vij(x1,y1,x2,y2) = -Rij(x1,y1,x2,y2)^(-1);
+    % a more general update of Vij,need 1/(d^2) not 1/d:
+    % d = Rij(x1,y1,x2,y2) - Req;
+    % Vij(x1,y1,x2,y2) = 1/(d^2);
     
     %Calculates forces
     d1 = diff(Vij,x1);
