@@ -17,3 +17,9 @@
 #### Include forces function 
 - Calculate forces at every particle for a given configuration
 - Calculates potential at every particle for a given configuration (not used for the forces)
+
+### Thursday:
+#### Try to solve BVP
+- Create function forces that calculates forces symbolically on matlab (more efficient)
+- Function error_for_BVP calculates error in boundary conditions for a given configuration (output of solve_IVP)
+
