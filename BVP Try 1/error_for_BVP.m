@@ -1,4 +1,4 @@
-function G = error_for_BVP(config,L,n)
+function G = error_for_BVP(config,L,n,Req)
 %ERROR_FOR_BVP Summary of this function goes here
 %   Detailed explanation goes here
 
