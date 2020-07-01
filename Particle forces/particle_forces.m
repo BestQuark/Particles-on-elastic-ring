@@ -2,6 +2,8 @@ function output_Forces = particle_forces(config,n, Req)
 %PARTICLE_FORCES Summary of this function goes here
 %   For a given configuration of particles it calculates the forces acting
 %   on them
+%   Input: config.x1(i) must give the x1 component of the ith particle
+%          config.x2(i) must give the x2 component of the ith particle
 %   Outputs:
 %       output_Forces 3xn where output_Forces(:,i) is the force over the
 %       ith particle

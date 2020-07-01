@@ -3,7 +3,6 @@ function output_Forces = forces(config,n,Req)
 % Output: 2xn matrix where outputij is the ith component of the force on
 % the jth particle
     syms xi yi xj yj
-    
     syms x1 y1 x2 y2;
     Rij(x1,y1,x2,y2) = sqrt((x1-x2)^2 + (y1-y2)^2);
     
