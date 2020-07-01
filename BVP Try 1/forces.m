@@ -4,12 +4,15 @@ function output_Forces = forces(config,n,Req)
 % the jth particle
     syms xi yi xj yj
     syms x1 y1 x2 y2;
+    %distance Rij btw i,j particle
     Rij(x1,y1,x2,y2) = sqrt((x1-x2)^2 + (y1-y2)^2);
     
-    %Springlike potential
+    %Springlike potential proportional to d^2
+    %Req a constant
     Vij(x1,y1,x2,y2) = (Rij(x1,y1,x2,y2) - Req)^2;
 
     %Lennard Jones potential
+    
     %Vij(x1,y1,x2,y2) = 0.3* ((Req/Rij)^(12) - (Req/Rij)^6 );
     
     %Coulumblike potential
