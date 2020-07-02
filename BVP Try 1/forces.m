@@ -26,20 +26,19 @@ function output_Forces = forces(config,n,Req,params)
     % assume epsilon = 0.3
     
     %epsilon = params.LJepsilon;
-    %Vij(x1,y1,x2,y2) = epsilon * ((Req/Rij)^(12) - (Req/Rij)^6);
+    %Vij(x1,y1,x2,y2) = epsilon * ((Req/Rij(x1,y1,x2,y2))^(12) - (Req/Rij(x1,y1,x2,y2))^6);
     
     %Coulumblike potential, inverse of d^2
     %original formula: Vij(x1,y1,x2,y2) = -Rij(x1,y1,x2,y2)^(-1);
     % a more general update of Vij,need 1/(d^2) not 1/d:
     % d = Rij(x1,y1,x2,y2) - Req;
-    % Vij(x1,y1,x2,y2) = 1/(d^2);
+    % Vij(x1,y1,x2,y2) = 1/((Rij(x1,y1,x2,y2)-Req)^1);
     
     %Calculates forces
     d1 = diff(Vij,x1);
     d2 = diff(Vij,y1);
 
-
-    f(xi,yi,xj,yj) = [d1(xi,yi,xj,yj) d2(xi,yi,xj,yj)];
+    f(xi,yi,xj,yj) = -[d1(xi,yi,xj,yj) d2(xi,yi,xj,yj)];
 
     output_Forces = zeros(2,n);
 

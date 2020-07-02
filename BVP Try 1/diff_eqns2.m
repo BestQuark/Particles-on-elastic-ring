@@ -46,7 +46,7 @@ for i=1:n
     Dlif = [cos(x(3)) sin(x(3)) p(3) 0 0 p(1)*sin(x(3))-p(2)*cos(x(3))]';
     
     %Fills Dlf
-    Dlf(:,6*n+i)=Dlif;
+    Dlf(6*(i-1)+1:6*i,6*n+i)=Dlif;
         
     %Compute derivatives
     %dx, dp is 1x3 matrix 
