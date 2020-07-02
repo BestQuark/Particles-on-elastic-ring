@@ -13,6 +13,8 @@ function output_Forces = forces(config,n,Req,params)
 % the jth particle
 
    % symbolic values of locations (x,y)
+   % along direction x1,y1, and x2,y2, only 2 directions
+   
     syms xi yi xj yj
     syms x1 y1 x2 y2;
     % distance Rij btw i,j particle
@@ -37,7 +39,7 @@ function output_Forces = forces(config,n,Req,params)
     % k * 1/Rij
     
     % k = params.Coulumb_potential_coefficient;
-    % Vij(x1,y1,x2,y2) = k * (Rij(x1,y1,x2,y2)^(-1));
+    % Vij(x1,y1,x2,y2) = k * (1/Rij(x1,y1,x2,y2));
    
     
     
@@ -50,9 +52,10 @@ function output_Forces = forces(config,n,Req,params)
     
     
     
-    %Calculates forces
-    d1 = diff(Vij,x1);
-    d2 = diff(Vij,y1);
+    % Calculates forces
+    % force is derivative of potential
+    d1 = diff(Vij,1,x1);
+    d2 = diff(Vij,1,y1);
 
     f(xi,yi,xj,yj) = [d1(xi,yi,xj,yj) d2(xi,yi,xj,yj)];
     
