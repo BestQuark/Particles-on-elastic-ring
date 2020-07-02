@@ -20,9 +20,11 @@ params.tol = 1e-3;
 % maximum step size to make in p0 when solving BVP, "normalized step"
 params.maxstep = 1; 
 
-%if for a Lennard Jones potential,set the value of epsilon to 0.3(e.g.)
+% if for a Lennard Jones potential,set the value of epsilon to 0.3(e.g.)
 %Lennard Jones potential 
 %Vij(x1,y1,x2,y2) = epsilon * ((Req/Rij)^(12) - (Req/Rij)^6 );
-params.LJepsilon = 0.3;
+params.LJ_potential_psilon = 0.3;
 
+% if for Coulumb potential coefficient k
+params.Coulumb_potential_coefficient = 8.99e9;
 end
