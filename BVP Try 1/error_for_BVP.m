@@ -1,5 +1,5 @@
 function G = error_for_BVP(config,L,n,Req)
-%ERROR_FOR_BVP Summary of this function goes here
+% ERROR_FOR_BVP Summary of this function goes here
 %   Detailed explanation goes here
 
 G = zeros(1,7*n-3);
