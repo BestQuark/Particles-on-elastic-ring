@@ -47,8 +47,7 @@ function output_Forces = forces(config,n,Req,params)
     % Case 4: a random class-mentioned potential with 1/(d^2)
     % not sure for realistic examples...
     
-    % d = Rij(x1,y1,x2,y2) - Req;
-    % Vij(x1,y1,x2,y2) = 1/((Rij(x1,y1,x2,y2)-Req)^1);
+    % Vij(x1,y1,x2,y2) = 1/((Rij(x1,y1,x2,y2)-Req)^2);
     
     % Calculates forces
     % force is derivative of potential

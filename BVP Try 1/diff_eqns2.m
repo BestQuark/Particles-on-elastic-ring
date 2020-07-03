@@ -13,7 +13,6 @@ function dU = diff_eqns2(t,U,n,L ,params)
 
 
 dY = zeros(1,n*6);
-
 dM = zeros(6*n,7*n);
 
 %Jacobian of f wrt x
@@ -23,8 +22,11 @@ Dxf = zeros(6*n);
 Dlf = zeros(6*n,7*n);
 
 %Matrix Y on notes (im gonna call it M)
-
-M = reshape(U(6*n+1:end),6*n,7*n);
+M = zeros(6*n,7*n);
+V = reshape(U(6*n+1:36*n*n+6*n),6*n,6*n);
+W = reshape(U(36*n*n+6*n+1:end),6*n,n);
+M(:,1:6*n) = V;
+M(:,6*n+1:end)=W;
 
 for i=1:n
     
@@ -61,6 +63,10 @@ end
 %Calculates dM as done in the notes
 dM = Dxf*M + Dlf;
 
+dV = reshape(dM(:,1:6*n),1,[]);
+dW = reshape(dM(:,6*n+1:end),1,[]);
+
+
 %Stores output vector
-dU = [dY reshape(dM,1,[])]';
+dU = [dY dV dW]';
 end
