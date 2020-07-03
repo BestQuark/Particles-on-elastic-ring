@@ -22,4 +22,5 @@
 #### Try to solve BVP
 - Create function forces that calculates forces symbolically on matlab (more efficient)
 - Function error_for_BVP calculates error in boundary conditions for a given configuration (output of solve_IVP)
+- diff_eqns2 and solve_IVP2 functions implemented to calculate at the same time the matrices v(t) and w(t) (from the notes)
 
