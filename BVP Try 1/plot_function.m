@@ -21,9 +21,9 @@ for i=1:n
 end
 
 % Set axis limits
-%axis([-2 2 -2 2])
-%plot([-2 2],[0 0],'k--')
-%plot([0 0],[-2 2],'k--')
+axis([-2 2 -1 3])
+plot([-2 2],[0 0],'k--')
+plot([0 0],[-1 3],'k--')
 % Axis labels
 xlabel('x_1')
 ylabel('x_2')

@@ -35,23 +35,14 @@ end
 U0 = [Y0 reshape(V,1,[]) reshape(W,1,[])];
 
 % Solve ODEs by ode45
-% [t,y] = ode45(odefun,tspan,y0,options)
-% differential function dY : diff_eqns, accepts input t,Y
-% time span : [0 s]
-% Y0 : initial value of Y
-% params.ode_options : error threshold
+
 [t,sol] = ode45(@(t,Y) diff_eqns2(t,Y,n,L,params),[0 s], U0,params.ode_options);
 
-% each row in the sol array y corresponds to 
-% a value returned in column vector t.
-% rearrange/transpose s.t. the ith row is the ith Y
 solution = reshape(sol, length(t),[]);
 
 % Store vectors t, x, and p
 output_IVP.t = t;
-% x1 is to take the i th row 1st col x11, 7th col x21,...,till end
-% and taking all possible rows i from 1 to end
-% similarly for other variables
+
 output_IVP.x1 = solution(:,1:6:6*n);
 output_IVP.x2 = solution(:,2:6:6*n);
 output_IVP.x3 = solution(:,3:6:6*n);
@@ -63,6 +54,8 @@ output_IVP.p3 = solution(:,6:6:6*n);
 output_IVP.V1 = reshape(solution(end,6*n+1:36*n*n+6*n),6*n,6*n);
 output_IVP.W1 = reshape(solution(end,36*n*n+6*n+1:end),6*n, n);
 
+output_IVP.V0 = reshape(solution(1,6*n+1:36*n*n+6*n),6*n,6*n);
+output_IVP.W0 = reshape(solution(1,36*n*n+6*n+1:end),6*n, n);
 
 end
 
