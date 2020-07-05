@@ -7,8 +7,8 @@ function plot_function(output,n)
 %   n : number of particles
 % Function Outputs:
 %   none
-C = {'b-','k-','r-','g-','i-'};
-D = {'.b','.k','.r','.g','.i'};
+C = {'b-','k-','r-','g-','i-','i-','i-','i-','i-','i-','i-','i-'};
+D = {'.b','.k','.r','.g','.i','.i','.i','.i','.i','.i','.i','.i'};
 figure(1)
 % Plot solution
 for i=1:n
@@ -21,7 +21,7 @@ for i=1:n
 end
 
 % Set axis limits
-axis([-2 2 -2 2])
+%axis([-2 2 -2 2])
 plot([-2 2],[0 0],'k--')
 plot([0 0],[-2 2],'k--')
 % Axis labels

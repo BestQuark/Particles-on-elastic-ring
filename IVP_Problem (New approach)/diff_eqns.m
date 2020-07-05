@@ -25,7 +25,6 @@ for i=1:n
     
     %Store derivatives dx,dp in dY(6nx1)
     dY(6*(i-1)+1:6*i) = [dx dp]';
-
 end
 
 

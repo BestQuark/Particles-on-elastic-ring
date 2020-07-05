@@ -12,7 +12,6 @@ function output_BVP = solve_BVP(x0,p0,n,L,s,Req, params)
 
 
 
-
 while i <= params.nmax 
     i = i+1;
     
@@ -31,10 +30,10 @@ while i <= params.nmax
     %These "some_functions" must be replaced with the real functions
     dG_x0 = some_function(output_IVP,L,n,Req) ;
     dG_x1 = some_function2(output_IVP,L,n,Req);
-    dG_lambda = some_funtion3(output_IVP,L,n,Req);
+    dG_lambda = some_funtion3(output_IVP,L,n);
     
-    Dg_x0 = dG_x0 + dG_x1*output_IVP.V1;
-    Dg_lambda = dG_lambda + dG_x1*output_IVP.W1;
+    Dg_x0 = dG_x0 + dG_x1*(output_IVP.V1(4:end,4:end));
+    Dg_lambda = dG_lambda + dG_x1*(output_IVP.W1(4:end,:));
     
     Dg = zeros(7*n-3);
     Dg(:,1:6*n-3) = Dg_x0 ; %Put Dg_x0
