@@ -10,15 +10,16 @@ function output_BVP = solve_BVP(x0,p0,n,L,s,Req, params)
 %   params : structure containing parameters
 % Function Outputs:
 
-
+output_IVP = solve_IVP2(x0,p0,n,L,s,params);
+Gvector = error_for_BVP(output_IVP,L,n,Req);
+Gnorm = norm(Gvector);
 
 while i <= params.nmax 
     i = i+1;
-    
-    output_IVP = solve_IVP2(x0,p0,n,L,s,params);
-    Gvector = error_for_BVP(output_IVP,L,n,Req);
-    Gnorm = norm(Gvector);
 
+    % Print variables of interest
+    fprintf('iteration: %.0f     error: %.10f \n',i,Gnorm)
+    
     plot_function(output_IVP,n);
 
     if Gnorm <= params.tol
@@ -42,33 +43,70 @@ while i <= params.nmax
     %update parameters
     dV = -Dg\Gvector;
     
-    
+    % Enforce maximum step size
+    if norm(dV) > params.maxstep
+        dV = dV/norm(dV)*params.maxstep;
+    end
+   
     %Puts conditions as column vector size 7n-3
     initial_conditions = zeros(7*n-3,1);
     
     initial_conditions(1:3) = p0(1,:)';
     
     for i=2:n
-       initial_conditions(4+6*(i-2):4+6*(i-1)) = [x0(i,:) p0(i,:)]';
+            initial_conditions(4+6*(i-2):4+6*(i-1)) = [x0(i,:) p0(i,:)]';
     end
     
     initial_conditions(6*n-2:end) = L;
     
+    %L2 = zeros(1,n);
+    %Initializes x02 and p02 beforehand
+    x02 = zeros(3,n);
+    p02 = zeros(3,n);
+    
+    condition = 1;
+    %Line search method
+    while condition==1
+    
     %Updates initial conditions
-    %Without line search
-    initial_conditions = initial_conditions - dV;
+        initial_conditions2 = initial_conditions - dV;
     
     %Puts (new) conditions again as they should be
     
-    p0(1,:) = initial_conditions(1:3);
-    for i=2:n
-       x0(i,:) = initial_conditions(4+6*(i-2):1+6*(i-1))';
-       p0(i,:) = initial_conditions(7+6*(i-2):4+6*(i-1))';
-    end
+        p02(1,:) = initial_conditions2(1:3);
+        for i=2:n
+            x02(i,:) = initial_conditions2(4+6*(i-2):1+6*(i-1))';
+            p02(i,:) = initial_conditions2(7+6*(i-2):4+6*(i-1))';
+        end
     
-    L = initial_conditions(6*n-2:end);
+        L2 = initial_conditions2(6*n-2:end);
+        
+        output_IVP2 = solve_IVP2(x02,p02,n,L2,s,params);
+        Gvector2 = error_for_BVP(output_IVP2,L2,n,Req);
+        Gnorm2 = norm(Gvector2);
+        
+        if Gnorm>Gnorm2
+            condition=0;
+            L = L2;
+            x0 = x02;
+            p0 = p02;
+            output_IVP = output_IVP2;
+            Gvector = Gverctor2;
+            Gnorm = Gnorm2;
+        elseif norm(dV)>1e-8
+            dV = dV/2;
+        else
+            error('Line search failed')
+        end
+        
+    end
+end
 
+if Gnorm > params.tol
+    error('BVP solver failed')
 end
 
 end
+
+
 
