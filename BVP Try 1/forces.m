@@ -58,9 +58,9 @@ function output_Forces = forces(config,n,Req,params)
     d2 = diff(Vij,y1);
     
     a11 = diff(d1,x1);
-    a12 = diff(d1,x2);
+    a12 = diff(d1,y1);
     a21 = diff(d2,x1);
-    a22 = diff(d2,x2);
+    a22 = diff(d2,y1);
 
     f(xi,yi,xj,yj) = [d1(xi,yi,xj,yj) d2(xi,yi,xj,yj)];
     
