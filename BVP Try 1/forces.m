@@ -8,9 +8,12 @@ function output_Forces = forces(config,n,Req,params)
 %             potential formulas
 % FORCES Calculates forces between n particles
 % Output: 
-% output_Forces:  2xn matrix where 
+% output_Forces.F:  2xn matrix where 
 % output_Forcesij is the ith component of the force on
 % the jth particle
+% output_Forces.A: 4xn matrix First component is dx1 dx1, second component
+% is first dx1 then dx2, thirdcomponent is dx2 then dx1, fourth component
+% is dx2 then dx2
 
    % symbolic values of locations (x,y)
    % along direction x1,y1, and x2,y2, only 2 directions
@@ -53,17 +56,31 @@ function output_Forces = forces(config,n,Req,params)
     % force is derivative of potential
     d1 = diff(Vij,x1);
     d2 = diff(Vij,y1);
+    
+    a11 = diff(d1,x1);
+    a12 = diff(d1,x2);
+    a21 = diff(d2,x1);
+    a22 = diff(d2,x2);
 
-    f(xi,yi,xj,yj) = -[d1(xi,yi,xj,yj) d2(xi,yi,xj,yj)];
+    f(xi,yi,xj,yj) = [d1(xi,yi,xj,yj) d2(xi,yi,xj,yj)];
+    
+    a(xi,yi,xj,yj) = [a11(xi,yi,xj,yj) a12(xi,yi,xj,yj) a21(xi,yi,xj,yj) a22(xi,yi,xj,yj)];
+    
     % initialize output_Forces
-    output_Forces = zeros(2,n);
+    output_Forces.F = zeros(2,n);
+    output_Forces.A = zeros(4,n);
 
 for i=1:n
     for j=i:n
           if i~=j
              Fij =f(config.x1(i),config.x2(i),config.x1(j),config.x2(j))';
-             output_Forces(:,i) = output_Forces(:,i) + Fij;
-             output_Forces(:,j) = output_Forces(:,j) - Fij;
+             Aij = a(config.x1(i),config.x2(i),config.x1(j),config.x2(j))';
+             
+             output_Forces.F(:,i) = output_Forces.F(:,i) + Fij;
+             output_Forces.F(:,j) = output_Forces.F(:,j) - Fij;
+             
+             output_Forces.A(:,i) = output_Forces.A(:,i) + Aij;
+             output_Forces.A(:,j) = output_Forces.A(:,j) - Aij;
           end  
     end  
 end

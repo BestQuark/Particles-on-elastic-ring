@@ -19,7 +19,7 @@ end_rod.p1 = config.p1(end,:);
 end_rod.p2 = config.p2(end,:);
 end_rod.p3 = config.p3(end,:);
 
-Forces = forces(initial_rod,n, Req);
+Forces = forces(initial_rod,n, Req).F;
 
 
 %first bc
