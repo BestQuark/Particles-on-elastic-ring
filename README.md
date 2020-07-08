@@ -24,3 +24,8 @@
 - Function error_for_BVP calculates error in boundary conditions for a given configuration (output of solve_IVP)
 - diff_eqns2 and solve_IVP2 functions implemented to calculate at the same time the matrices v(t) and w(t) (from the notes)
 
+## Third Week: 
+### Tuesday: 
+#### Tasks: 
+- 1. Working on the partial derivatives dx(1)/dx(0) and dx(1)/dlambda (Coding for the matrices) 
+- 2. Working on the matrices for derivative for dG/dx(1) and dG/dx(0) 
