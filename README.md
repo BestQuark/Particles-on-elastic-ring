@@ -28,7 +28,7 @@
 ### Tuesday: 
 #### Tasks: 
 1. Working on the matrices for derivative for dG/dx(1) and dG/dx(0) 
--[x] dG/dx(0)
--[] dG/dx(1)
+- [x] dG/dx(0)
+- [ ] dG/dx(1)
 2. Working on the partial derivatives dx(1)/dx(0) and dx(1)/dlambda (Coding for the matrices) 
 
