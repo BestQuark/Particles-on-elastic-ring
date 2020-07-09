@@ -3,8 +3,8 @@ function output = dGx1(output_IVP,n)
 dG_x1 = zeros(7*n-3,6*n-3);
 
 %Extracts data from output_IVP 
-x0_3 = output_IVP.x3(:,1);
-x1_3 = output_IVP.x3(:,end);
+x0_3 = output_IVP.x3(1,:);
+x1_3 = output_IVP.x3(end,:);
 
 %for the first 3 element of G (derivatives) over x(1) 
 dG_x1(1:3,1+6*(n-1):6*(n-1)+3) = eye(3,3);
