@@ -22,7 +22,7 @@ end
 
 %for the last func
 for i=1:n-1
-       dG_x1(6*(n-1)+3+i:6*(n-1)+3+i,4+6*(i-1): 6*i) = [0 -cos(x0_3(i+1)) -sin(x0_3(i+1))];
+       dG_x1(6*(n-1)+3+i:6*(n-1)+3+i,4+6*(i-1): 6*i) = [-cos(x0_3(i+1)) -sin(x0_3(i+1)) 0];
 end
 
 
