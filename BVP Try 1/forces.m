@@ -11,9 +11,9 @@ function output_Forces = forces(config,n,Req,params)
 % output_Forces.F:  2xn matrix where 
 % output_Forcesij is the ith component of the force on
 % the jth particle
-% output_Forces.A: 4xn matrix First component is dx1 dx1, second component
-% is first dx1 then dx2, thirdcomponent is dx2 then dx1, fourth component
-% is dx2 then dx2
+% output_Forces.A: 4xn matrix First component is dx1 of F_1, second component
+% is dx2 of F_1, thirdcomponent is dx1 of F_2, fourth component
+% is dx2 of F_2
 
    % symbolic values of locations (x,y)
    % along direction x1,y1, and x2,y2, only 2 directions

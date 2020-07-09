@@ -24,14 +24,16 @@ while i <= params.nmax
 
     if Gnorm <= params.tol
         output_BVP = output_IVP;
+        output_BVP.x0 = x0;
         output_BVP.p0 = p0;
+        output_BVP.L = L;
         break
     end
     
     %These "some_functions" must be replaced with the real functions
     dG_x0 = some_function(output_IVP,L,n,Req) ;
-    dG_x1 = some_function2(output_IVP,L,n,Req);
-    dG_lambda = some_funtion3(output_IVP,L,n);
+    dG_x1 = dGx1(output_IVP,n);
+    dG_lambda = dGlambda(output_IVP,n);
     
     Dg_x0 = dG_x0 + dG_x1*(output_IVP.V1(4:end,4:end));
     Dg_lambda = dG_lambda + dG_x1*(output_IVP.W1(4:end,:));
