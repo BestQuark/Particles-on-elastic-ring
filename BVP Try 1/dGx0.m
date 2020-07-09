@@ -9,6 +9,9 @@ x0_p1 = output_IVP.p1(1,:)
 x1_p1 = output_IVP.p1(end,:)
 x0_p2 = output_IVP.p2(1,:)
 x1_p2 = output_IVP.p2(end,:)
+
+forces_x1 = forces.A(1,:)
+forces_x2 = forces.A(4,:)
 %for the first 3 element of G (derivatives) over x(0) (fixed at the origin)
 %all 0 for the first 3 rows.
 
@@ -21,6 +24,9 @@ end
 
 for i = 1:n-1
         dG_x0(3*(n-1)+3*i+1:3*(n-1)+3*i+3,7+6*(i-1): 3+6*i) = eye(3,3)
+        dG_x0(3*(n-1)+3*i+1:3*(n-1)+3*i+3,4+6*(i-1): 6*i) = [forces_x1(i) 0 0;...
+                                                             0 forces_x2(i) 0;...
+                                                             0 0 0]
 end
 
 %for the last func
