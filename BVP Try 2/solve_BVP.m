@@ -11,7 +11,7 @@ function output_BVP = solve_BVP(x0,p0,n,L,s,Req, params)
 % Function Outputs:
 
 output_IVP = solve_IVP2(x0,p0,n,L,s,params);
-Gvector = error_for_BVP(output_IVP,L,n,Req);
+Gvector = error_for_BVP(output_IVP,L,n,Req,params);
 Gnorm = norm(Gvector);
 
 counter=0;
@@ -89,10 +89,10 @@ while counter <= params.nmax
         
         
         output_IVP2 = solve_IVP2(x02,p02,n,L2,s,params);
-        Gvector2 = error_for_BVP(output_IVP2,L2,n,Req);
+        Gvector2 = error_for_BVP(output_IVP2,L2,n,Req,params);
         Gnorm2 = norm(Gvector2);
         
-        if 1==1
+        if Gnorm2<Gnorm
             condition=0;
             L = L2;
             x0 = x02;
@@ -100,7 +100,7 @@ while counter <= params.nmax
             output_IVP = output_IVP2;
             Gvector = Gvector2;
             Gnorm = Gnorm2;
-        elseif norm(dV)>1e-8
+        elseif norm(dV)>1e-7
             dV = dV/2;
         else
             error('Line search failed')

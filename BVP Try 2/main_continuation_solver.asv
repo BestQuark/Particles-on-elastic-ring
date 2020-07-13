@@ -33,7 +33,7 @@ params = parameters;
 
 % List of Desired boundary condition for x(tf)
 %Reqs = [1/pi];
-Reqs =  linspace(1/pi,0.02,50);
+Reqs =  linspace(1/pi,0,50);
 
 % Solve the continuation problem
 output = solve_continuation(x0,p0,n,L,s,Reqs, params);

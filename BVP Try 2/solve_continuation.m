@@ -3,7 +3,7 @@ function output = solve_continuation(x0,p0,n,L,s,Reqs, params)
 for i=1:length(Reqs)
    
     % Set desired value for Req
-    Req = Reqs(i);
+    Req = Reqs(i)
     
     % Solve the boundary value problem
     output_BVP = solve_BVP(x0,p0,n,L,s,Req, params);

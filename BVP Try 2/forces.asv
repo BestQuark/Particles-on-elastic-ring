@@ -25,15 +25,15 @@ function output_Forces = forces(config,n,Req,params)
     
     % Case 1: Springlike potential proportional to d^2
     % Req a constant
-    %Vij(x1,y1,x2,y2) = (Rij(x1,y1,x2,y2) - Req)^2;
+    Vij(x1,y1,x2,y2) = (Rij(x1,y1,x2,y2) - Req)^2;
 
     
     
     % Case 2: Lennard Jones potential
     % assume epsilon = 0.3
     
-     %epsilon = params.LJ_potential_epsilon;
-     %Vij(x1,y1,x2,y2) = epsilon * ((Req/Rij(x1,y1,x2,y2))^(12) - (Req/Rij(x1,y1,x2,y2))^6);
+    % epsilon = params.LJ_potential_epsilon;
+    % Vij(x1,y1,x2,y2) = epsilon * ((Req/Rij(x1,y1,x2,y2))^(12) - (Req/Rij(x1,y1,x2,y2))^6);
     
     
  
@@ -41,8 +41,8 @@ function output_Forces = forces(config,n,Req,params)
     % that makes sense, changed back with a coefficient k
     % k * 1/Rij
     
-     %k = params.Coulumb_potential_coefficient;
-     %Vij(x1,y1,x2,y2) = k * (1/Rij(x1,y1,x2,y2));
+    % k = params.Coulumb_potential_coefficient;
+    % Vij(x1,y1,x2,y2) = k * (1/Rij(x1,y1,x2,y2));
    
     
     
