@@ -7,8 +7,8 @@ function plot_function(output,n)
 %   n : number of particles
 % Function Outputs:
 %   none
-%C = {'b-','k-','r-','g-','i-'};
-%D = {'.b','.k','.r','.g','.i'};
+% C = {'b-','k-','r-','g-','i-'};
+% D = {'.b','.k','.r','.g','.i'};
 figure(1)
 % Plot solution
 for i=1:n
