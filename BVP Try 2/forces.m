@@ -25,7 +25,7 @@ function output_Forces = forces(config,n,Req,params)
     
     % Case 1: Springlike potential proportional to d^2
     % Req a constant
-    Vij(x1,y1,x2,y2) = (Rij(x1,y1,x2,y2) - Req)^2;
+    Vij(x1,y1,x2,y2) = 100*(Rij(x1,y1,x2,y2) - Req)^2;
 
     
     
@@ -62,9 +62,9 @@ function output_Forces = forces(config,n,Req,params)
     a21 = diff(d2,x1);
     a22 = diff(d2,y1);
 
-    f(xi,yi,xj,yj) = [d1(xi,yi,xj,yj) d2(xi,yi,xj,yj)];
+    f(xi,yi,xj,yj) = [d1(xi,yi,xj,yj); d2(xi,yi,xj,yj)];
     
-    a(xi,yi,xj,yj) = [a11(xi,yi,xj,yj) a12(xi,yi,xj,yj) a21(xi,yi,xj,yj) a22(xi,yi,xj,yj)];
+    a(xi,yi,xj,yj) = [a11(xi,yi,xj,yj); a12(xi,yi,xj,yj); a21(xi,yi,xj,yj); a22(xi,yi,xj,yj)];
     
     % initialize output_Forces
     output_Forces.F = zeros(2,n);
@@ -73,8 +73,8 @@ function output_Forces = forces(config,n,Req,params)
 for i=1:n
     for j=1:n
           if i~=j
-             Fij =f(config.x1(i),config.x2(i),config.x1(j),config.x2(j))';
-             Aij = a(config.x1(i),config.x2(i),config.x1(j),config.x2(j))';
+             Fij =f(config.x1(1,i),config.x2(1,i),config.x1(1,j),config.x2(1,j));
+             Aij = a(config.x1(1,i),config.x2(1,i),config.x1(1,j),config.x2(1,j));
              
              output_Forces.F(:,i) = output_Forces.F(:,i) + Fij;
              %output_Forces.F(:,j) = output_Forces.F(:,j) - Fij;
