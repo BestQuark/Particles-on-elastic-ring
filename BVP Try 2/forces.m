@@ -42,7 +42,7 @@ function output_Forces = forces(config,n,Req,params)
     % k * 1/Rij
     
      %k = params.Coulumb_potential_coefficient;
-     %Vij(x1,y1,x2,y2) = k * (1/Rij(x1,y1,x2,y2));
+    % Vij(x1,y1,x2,y2) = k * (1/Rij(x1,y1,x2,y2));
    
     
     

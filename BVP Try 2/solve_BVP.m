@@ -33,7 +33,7 @@ while counter <= params.nmax
     end
     
     force = forces(output_IVP,n,Req,params);
-    
+    force.F
     %These "some_functions" must be replaced with the real functions
     dG_x0 = dGx0(output_IVP,n,force) ;
     dG_x1 = dGx1(output_IVP,n);
@@ -51,7 +51,7 @@ while counter <= params.nmax
     
     % Enforce maximum step size
     if norm(dV) > params.maxstep
-        dV = dV/norm(dV)*params.maxstep;
+       dV = dV/norm(dV)*params.maxstep;
     end
    
     %Puts conditions as column vector size 7n-3
@@ -91,8 +91,8 @@ while counter <= params.nmax
         output_IVP2 = solve_IVP2(x02,p02,n,L2,s,params);
         Gvector2 = error_for_BVP(output_IVP2,L2,n,Req,params);
         Gnorm2 = norm(Gvector2);
-        
-        if Gnorm2<Gnorm
+        %Gnorm2<Gnorm
+        if 1==1
             condition=0;
             L = L2;
             x0 = x02;

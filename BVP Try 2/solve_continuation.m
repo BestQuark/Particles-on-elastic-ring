@@ -13,7 +13,6 @@ for i=1:length(Reqs)
 
     % Update initial guess for p0,x0 and L
     x0 = output_BVP.x0;
-    x0(2,2)
     p0 = output_BVP.p0;
     L = output_BVP.L;
     

@@ -6,7 +6,7 @@ function params = parameters
 
 % parameters for solving ODEs
 % the pre-assumed error term/tolerance
-params.ode_options = odeset('AbsTol',1e-8,'RelTol',1e-8);
+params.ode_options = odeset('AbsTol',1e-4,'RelTol',1e-4);
 
 % tolerance for determining when to start checking det(X(t))
 params.detXtol = 1e-10;
@@ -18,7 +18,7 @@ params.nmax = 200;
 params.tol = 1e-3; 
 
 % maximum step size to make in p0 when solving BVP, "normalized step"
-params.maxstep = 0.3; 
+params.maxstep = 5; 
 
 % if for a Lennard Jones potential,set the value of epsilon to 0.3(e.g.)
 %Lennard Jones potential 
