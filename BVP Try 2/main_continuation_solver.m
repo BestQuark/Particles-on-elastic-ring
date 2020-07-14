@@ -10,10 +10,10 @@ function output = main_continuation_solver
 %L = [0.5 0.5];
 
 % one at origin, one at the side of circle
-%x0 = [0 0 0; -0.5/pi 0.5/pi -pi/2];
-%p0 = [0 0 2*pi; 0 0 2*pi];
-%n = 2;
-%L = [0.75 0.25];
+x0 = [0 0 0; -0.5/pi 0.5/pi -pi/2];
+p0 = [0 0 2*pi; 0 0 2*pi];
+n = 2;
+L = [0.75 0.25];
 
 %starting from Req 3
 %x0 = [0 0 0; 0 0.4274 3.1416];
@@ -34,10 +34,10 @@ function output = main_continuation_solver
 
 %EXAMPLE: 4 PARTICLES
 
-x0 = [0 0 0;0.5/pi 0.5/pi pi/2;0 1/pi pi; -0.5/pi 0.5/pi -pi/2];
-p0 = [0 0 2*pi; 0 0 2*pi;0 0 2*pi;0 0 2*pi];
-n = 4;
-L = [0.25 0.25 0.25 0.25];
+%x0 = [0 0 0;0.5/pi 0.5/pi pi/2;0 1/pi pi; -0.5/pi 0.5/pi -pi/2];
+%p0 = [0 0 2*pi; 0 0 2*pi;0 0 2*pi;0 0 2*pi];
+%n = 4;
+%L = [0.25 0.25 0.25 0.25];
 
 
 % EXAMPLE: 4 PARTICLES randomly generated IC
@@ -58,8 +58,8 @@ s = 1;
 params = parameters;
 
 % List of Desired boundary condition for x(tf)
-Reqs = [0.5*sqrt(2)/pi];
-%Reqs = linspace(0.5*sqrt(2)/pi, 0, 50);
+%Reqs = [0.5*sqrt(2)/pi];
+Reqs = linspace(0.5*sqrt(2)/pi, 0, 50);
 %Reqs =  linspace(1/pi,3,50);
 
 % Solve the continuation problem
