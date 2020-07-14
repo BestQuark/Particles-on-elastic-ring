@@ -1,6 +1,6 @@
 function output = solve_continuation(x0,p0,n,L,s,Reqs, params)
 
-% iterate through all entries of Reqs
+%
 for i=1:length(Reqs)
    
     % Set desired value for Req
@@ -9,7 +9,7 @@ for i=1:length(Reqs)
     % Solve the boundary value problem
     output_BVP = solve_BVP(x0,p0,n,L,s,Req, params);
     
-    % Store solution of boundary value problem at ith entry of output
+    % Store solution of boundary value problem
     output(i) = output_BVP;
 
     % Update initial guess for p0,x0 and L
@@ -19,7 +19,7 @@ for i=1:length(Reqs)
     L = output_BVP.L;
     
     % Print variables of interest
-    % fprintf('\n\n iteration: %.0f of %.0f complete \n\n',i,length(BCs(:,1)))
+   % fprintf('\n\n iteration: %.0f of %.0f complete \n\n',i,length(BCs(:,1)))
     
 end
 
