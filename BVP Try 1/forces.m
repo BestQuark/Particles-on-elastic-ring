@@ -1,5 +1,5 @@
 function output_Forces = forces(config,n,Req,params)
-%Input:
+% Input:
 % config: configurations of the particles, a struct stores x1,x2,x3
 %          p1,p2,p3...info
 % n:number of particles
@@ -11,7 +11,8 @@ function output_Forces = forces(config,n,Req,params)
 % output_Forces.F:  2xn matrix where 
 % output_Forcesij is the ith component of the force on
 % the jth particle
-% output_Forces.A: 4xn matrix First component is dx1 of F_1, second component
+% output_Forces.A: 4xn matrix First component is dx1 of F_1, 
+% second component
 % is dx2 of F_1, thirdcomponent is dx1 of F_2, fourth component
 % is dx2 of F_2
 

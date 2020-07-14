@@ -1,19 +1,15 @@
 function output = main_continuation_solver
 
 % Initial conditions for x and p  
-%EXAMPLE: ONE PARTICLE
-%x0 = [0 0 0];
-%p0 = [0 0.1 2*pi];
-%n = 1;
-%L = 1;
 
 %EXAMPLE: TWO PARTICLES
+% one at origin, one at the top of circle
 %x0 = [0 0 0; 0 1/pi pi];
 %p0 = [0 0 2*pi; 0 0 2*pi];
 %n = 2;
 %L = [0.5 0.5];
 
-
+% one at origin, one at the side of circle
 %x0 = [0 0 0; -0.5/pi 0.5/pi -pi/2];
 %p0 = [0 0 2*pi; 0 0 2*pi];
 %n = 2;
@@ -44,10 +40,16 @@ n = 4;
 L = [0.25 0.25 0.25 0.25];
 
 
-%x0 = rand(4,3);
-%p0 = 3*rand(4,3);
-%n=4;
-%L = 2*rand(1,4);
+% EXAMPLE: 4 PARTICLES randomly generated IC
+% randomly generate L s.t. sumL = 1
+% x0 = rand(4,3);
+% p0 = 3*rand(4,3);
+% n = 4;
+% l1 = rand(1,1);
+% l2 = rand(1,1) * (1 - l1);
+% l3 = rand(1,1) * (1 - l1 - l2);
+% l4 = 1 - l1 - l2 - l3;
+% L = [l1 l2 l3 l4];
 
 % Arclength
 s = 1;
