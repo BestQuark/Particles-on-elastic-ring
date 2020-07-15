@@ -51,7 +51,22 @@ while counter <= params.nmax
     
     % Enforce maximum step size
     if norm(dV) > params.maxstep
-       dV = dV/norm(dV)*params.maxstep;
+        if(Gnorm <= params.maxstep)
+            if(params.maxstep >= 0.001)
+                params.maxstep = params.maxstep/2;
+                dV = dV/norm(dV)*params.maxstep;
+         
+            else
+                params.maxstep = 0.001
+                %params.error_decay = params.error_decay/4
+                dV = dV/norm(dV)*params.maxstep;
+                
+            end
+        else
+            Gnorm
+            params.error_decay
+            dV = dV/norm(dV)*params.maxstep;
+        end
     end
    
     %Puts conditions as column vector size 7n-3
