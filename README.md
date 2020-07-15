@@ -31,4 +31,10 @@
   - [x] dG/dx(0)
   - [x] dG/dx(1)
 - [x] Working on the partial derivatives dx(1)/dx(0) and dx(1)/dlambda (Coding for the matrices) 
+### Thursday: 
+- Working on the error of the codes 
+- Fixed the forces and make it work
+## Forth Week
+### Tuesday: 
+- Fixed the code with the sign of the potential. 
 
