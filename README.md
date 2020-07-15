@@ -27,9 +27,8 @@
 ## Third Week: 
 ### Tuesday: 
 #### Tasks: 
-- [ ] Working on the matrices for derivative for dG/dx(1) and dG/dx(0) 
-  - [ ] dG/dx(0)
-    - Note: Upload dGx0 to check, partly done, without the force for the p part for error vector G. Considering the force function. (Hy)
+- [x] Working on the matrices for derivative for dG/dx(1) and dG/dx(0) 
+  - [x] dG/dx(0)
   - [x] dG/dx(1)
-- [ ] Working on the partial derivatives dx(1)/dx(0) and dx(1)/dlambda (Coding for the matrices) 
+- [x] Working on the partial derivatives dx(1)/dx(0) and dx(1)/dlambda (Coding for the matrices) 
 
