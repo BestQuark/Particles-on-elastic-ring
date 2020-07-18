@@ -84,7 +84,7 @@ for i=1:n
              Aij = a(config.x1(1,i),config.x2(1,i),config.x1(1,j),config.x2(1,j));
              
              output_Forces.F(:,i) = output_Forces.F(:,i) - Fij;
-             %output_Forces.F(:,j) = output_Forces.F(:,j) - Fij;
+             %output_Forces.F(:,j) = output_Forces.F(:,j) + Fij;
              
              output_Forces.A(:,i) = output_Forces.A(:,i) - Aij;
              %output_Forces.A(:,j) = output_Forces.A(:,j) - Aij;
