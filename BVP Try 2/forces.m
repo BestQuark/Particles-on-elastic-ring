@@ -54,13 +54,20 @@ function output_Forces = forces(config,n,Req,params)
     
     % Calculates forces
     % force is derivative of potential
-    d1 = diff(Vij,x1);
-    d2 = diff(Vij,y1);
+%     d1 = diff(Vij,x1);
+%     d2 = diff(Vij,y1);
     
-    a11 = diff(d1,x1);
-    a12 = diff(d1,y1);
-    a21 = diff(d2,x1);
-    a22 = diff(d2,y1);
+%     a11 = diff(d1,x1);
+%     a12 = diff(d1,y1);
+%     a21 = diff(d2,x1);
+%     a22 = diff(d2,y1);
+    d1 = diff(Vij,x2);
+    d2 = diff(Vij,y2);
+    
+    a11 = diff(d1,x2);
+    a12 = diff(d1,y2);
+    a21 = diff(d2,x2);
+    a22 = diff(d2,y2);
 
     f(xi,yi,xj,yj) = [d1(xi,yi,xj,yj); d2(xi,yi,xj,yj)];
     
@@ -79,7 +86,7 @@ for i=1:n
              output_Forces.F(:,i) = output_Forces.F(:,i) - Fij;
              %output_Forces.F(:,j) = output_Forces.F(:,j) - Fij;
              
-             output_Forces.A(:,i) = output_Forces.A(:,i) + Aij;
+             output_Forces.A(:,i) = output_Forces.A(:,i) - Aij;
              %output_Forces.A(:,j) = output_Forces.A(:,j) - Aij;
           end  
     end  
