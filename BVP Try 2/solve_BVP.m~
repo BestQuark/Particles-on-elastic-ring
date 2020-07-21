@@ -67,7 +67,7 @@ while counter <= params.nmax
             end
         else
             Gnorm
-            % params.error_decay
+            params.error_decay
             dV = dV/norm(dV)*params.maxstep;
         end
     end

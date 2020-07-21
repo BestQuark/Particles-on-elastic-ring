@@ -25,7 +25,7 @@ function output_Forces = forces(config,n,Req,params)
     
     % Case 1: Springlike potential proportional to d^2
     % Req a constant
-    Vij(x1,y1,x2,y2) = 100*(Rij(x1,y1,x2,y2) - Req)^2;
+    Vij(x1,y1,x2,y2) = 1000*(Rij(x1,y1,x2,y2) - Req)^2;
 
     
     
