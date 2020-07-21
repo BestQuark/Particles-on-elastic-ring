@@ -25,29 +25,28 @@ function output = main_continuation_solver
 
 % EXAMPLE: 3 PARTICLES
 
-
-
 % EXAMPLE: 3 PARTICLES
-% start in 3-symmetric-equilateral-triangle-case
-% p0 = [-0.1170 -0.2032 6.2712;0.2336 0.0107 6.2704;-0.1185 0.1974 6.2715];
-% Reqs =  linspace(1/pi,0,10);
-
+% start in 3-particles-symmetric-equilateral-triangle-case
 x0 = [0 0 0; sqrt(3)/(4*pi) wrapToPi(3/(4*pi)) (2*pi)/3; 
     -sqrt(3)/(4*pi) wrapToPi(3/(4*pi)) (4*pi)/3];
-p0 = [-0.1170 -0.2032 2*pi;0.2336 0.0107 2*pi;-0.1185 0.1974 2*pi];
+p0 = [0 0 2*pi;0 0 2*pi;0 0 2*pi];
 n = 3;
 L = [1/3 1/3 1/3];
 Reqs =  linspace(sqrt(3)/(2*pi),0,10);
 
+% resulting is a curved squished "flower" image
+% yet something strange occurs when increasing Reqs
+% Reqs =  linspace(1/pi,0,10);
 
 
-%EXAMPLE: 4 PARTICLES
 
+% EXAMPLE: 4 PARTICLES
+% start in 4-particles-symmetric-square-case
 % x0 = [0 0 0;0.5/pi 0.5/pi pi/2;0 1/pi pi; -0.5/pi 0.5/pi -pi/2];
 % p0 = [0 0 2*pi; 0 0 2*pi;0 0 2*pi;0 0 2*pi];
 % n = 4;
 % L = [0.25 0.25 0.25 0.25];
-% Reqs =  linspace(sqrt(3)/(2*pi),pi,10);
+% Reqs =  linspace(sqrt(2)/(2*pi),pi,10);
 
 % EXAMPLE: 4 PARTICLES randomly generated IC
 % randomly generate L s.t. sumL = 1

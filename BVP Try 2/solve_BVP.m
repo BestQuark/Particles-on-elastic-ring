@@ -66,7 +66,7 @@ while counter <= params.nmax
                 
             end
         else
-            Gnorm
+            % Gnorm
             % params.error_decay
             dV = dV/norm(dV)*params.maxstep;
         end
@@ -126,9 +126,8 @@ while counter <= params.nmax
     end
 end
 
-% Print determinant
-fprintf('determinant: %.0f',det(Dg))
-
+    % Print determinant
+    % fprintf('determinant: %.0f',det(Dg))
 if Gnorm > params.tol
     error('BVP solver failed')
 end
