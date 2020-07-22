@@ -1,27 +1,42 @@
 function output = main_continuation_solver
 
 % Initial conditions for x and p  
-
+%-----------------------------------------------
 % EXAMPLE: 2 PARTICLES
 % one at origin, one at the top of circle
-x0 = [0 0 0; 0 1/pi pi];
-p0 = [0 0 2*pi; 0 0 2*pi];
-n = 2;
-L = [0.5 0.5];
 % Reqs = linspace(1/pi, 0, 50); 
- Reqs =  linspace(1/pi,1.5/pi,10);
-% Reqs =  linspace(1/pi,0.5,10);
-% note: both 0.5 or 2/pi works when increasing Reqs
 
-
-% EXAMPLE: 2 PARTICLES
-% one at origin, one at the side of circle
-% x0 = [0 0 0; -0.5/pi 0.5/pi -pi/2];
+% x0 = [0 0 0; 0 1/pi pi];
 % p0 = [0 0 2*pi; 0 0 2*pi];
 % n = 2;
-% L = [0.75 0.25];
+% L = [0.5 0.5];
+% Reqs =  linspace(1/pi,2/pi,10);
+% Reqs = [0.5*sqrt(2)/pi];
+% Reqs =  linspace(1/pi,0,10);
+
+% result:
+% Req case1 : stretched rod
+% Req case2 : squished oval
+% Req case3 : decrease Req from equili to 0, but still some distance away
+% note: 
+% seems like any number from 0.5-0.7
+% (e.g. 2/pi)works when increasing Reqs
+%-----------------------------------------------
+
+% EXAMPLE: 2 PARTICLES
+% one at origin, one at the 3rd quartile side of circle
+x0 = [0 0 0; -0.5/pi 0.5/pi -pi/2];
+p0 = [0 0 2*pi; 0 0 2*pi];
+n = 2;
+L = [0.75 0.25];
+Reqs = linspace(0.5*sqrt(2)/pi, 0, 50);
+
+% note: decrease Req, then the equilibrium quartile 
+% Req = 0.5*sqrt(2)/pi, particle moves towards the origin
+
 % Reqs = linspace(1/pi, 0, 50);
 
+%-----------------------------------------------
 
 % EXAMPLE: 2 PARTICLES
 % starting from Req 3
@@ -30,6 +45,7 @@ L = [0.5 0.5];
 % n = 2;
 % L = [0.5 0.5];
 % Reqs = linspace(1/pi, 0, 50);
+%-----------------------------------------------
 
 % EXAMPLE: 3 PARTICLES
 
@@ -42,11 +58,12 @@ L = [0.5 0.5];
 % L = [1/3 1/3 1/3];
 % Reqs =  linspace(sqrt(3)/(2*pi),0,10);
 
+%-----------------------------------------------
 % resulting is a curved squished "flower" image
 % yet something strange occurs when increasing Reqs
 % Reqs =  linspace(1/pi,0,10);
 
-
+%-----------------------------------------------
 % EXAMPLE: 4 PARTICLES
 % start in 4-particles-symmetric-square-case
 % x0 = [0 0 0;0.5/pi 0.5/pi pi/2;0 1/pi pi; -0.5/pi 0.5/pi wrapToPi(1.5*pi)];
@@ -54,6 +71,8 @@ L = [0.5 0.5];
 % n = 4;
 % L = [0.25 0.25 0.25 0.25];
 % Reqs =  linspace(sqrt(2)/(2*pi),0,10);
+
+%-----------------------------------------------
 
 % EXAMPLE: 4 PARTICLES 
 % NOT SYMMETRIC!!!
@@ -67,7 +86,9 @@ L = [0.5 0.5];
 % l3 = rand(1,1) * (1 - l1 - l2);
 % l4 = 1 - l1 - l2 - l3;
 % L = [l1 l2 l3 l4];
+%-----------------------------------------------
 
+% 
 % Arclength
 s = 1;
 
