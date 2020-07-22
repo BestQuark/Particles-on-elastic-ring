@@ -21,15 +21,30 @@ function output = main_continuation_solver
 % note: 
 % seems like any number from 0.5-0.7
 % (e.g. 2/pi)works when increasing Reqs
-%-----------------------------------------------
 
+%-----------------------------------------------
+% EXAMPLE: 2 PARTICLES
+% one at origin, one at the 1st quartile side of circle
+% x0 = [0 0 0; 0.5/pi 0.5/pi pi/2];
+% p0 = [0 0 2*pi; 0 0 2*pi];
+% n = 2;
+% L = [0.25 0.75];
+% Reqs = linspace(0.5*sqrt(2)/pi, sqrt(2)/pi, 10);
+% Reqs = linspace(1/pi, 0, 50);
+
+% note: , the equilibrium quartile Req = 0.5*sqrt(2)/pi, particle 
+% decrease Req --> move towards the origin
+% increase Req --> move upward, then stretched
+
+% refer to the 2-particles bifurcation diagram
+%-----------------------------------------------
 % EXAMPLE: 2 PARTICLES
 % one at origin, one at the 3rd quartile side of circle
-x0 = [0 0 0; -0.5/pi 0.5/pi -pi/2];
-p0 = [0 0 2*pi; 0 0 2*pi];
-n = 2;
-L = [0.75 0.25];
-Reqs = linspace(0.5*sqrt(2)/pi, 0, 50);
+% x0 = [0 0 0; -0.5/pi 0.5/pi -pi/2];
+% p0 = [0 0 2*pi; 0 0 2*pi];
+% n = 2;
+% L = [0.75 0.25];
+% Reqs = linspace(0.5*sqrt(2)/pi, 0, 50);
 
 % note: decrease Req, then the equilibrium quartile 
 % Req = 0.5*sqrt(2)/pi, particle moves towards the origin
@@ -44,10 +59,10 @@ Reqs = linspace(0.5*sqrt(2)/pi, 0, 50);
 % p0 = [0 257.2647 22.7037; 0 -257.2647 22.7037];
 % n = 2;
 % L = [0.5 0.5];
-% Reqs = linspace(1/pi, 0, 50);
-%-----------------------------------------------
+% Reqs = linspace(1/pi, 0, 10);
 
-% EXAMPLE: 3 PARTICLES
+% result: decrease Req, stretched rod goes down to get squeezed
+%-----------------------------------------------
 
 % EXAMPLE: 3 PARTICLES
 % start in 3-particles-symmetric-equilateral-triangle-case
@@ -59,7 +74,7 @@ Reqs = linspace(0.5*sqrt(2)/pi, 0, 50);
 % Reqs =  linspace(sqrt(3)/(2*pi),0,10);
 
 %-----------------------------------------------
-% resulting is a curved squished "flower" image
+% resulting is a curved squeezed "flower" image
 % yet something strange occurs when increasing Reqs
 % Reqs =  linspace(1/pi,0,10);
 
@@ -88,7 +103,8 @@ Reqs = linspace(0.5*sqrt(2)/pi, 0, 50);
 % L = [l1 l2 l3 l4];
 %-----------------------------------------------
 
-% 
+% more eg of particles to add...
+
 % Arclength
 s = 1;
 

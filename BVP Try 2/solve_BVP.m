@@ -15,7 +15,7 @@ Gvector = error_for_BVP(output_IVP,L,n,Req,params);
 Gnorm = norm(Gvector);
 
 counter=0;
-
+    
 while counter <= params.nmax 
     counter = counter+1;
 
@@ -123,11 +123,14 @@ while counter <= params.nmax
         else
             error('Line search failed')
         end 
+            % Print determinant
+fprintf('\ndeterminant: %.0f\n',det(Dg))
     end
+
 end
 
-    % Print determinant
-    % fprintf('determinant: %.0f',det(Dg))
+
+
 if Gnorm > params.tol
     error('BVP solver failed')
 end
