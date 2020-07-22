@@ -19,7 +19,7 @@ params.tol = 1e-3;
 
 % maximum step size to make in p0 when solving BVP, "normalized step"
 % params.maxstep = 5; 
-params.maxstep = 20;
+params.maxstep = 5;
 
 % if for a Lennard Jones potential,set the value of epsilon to 0.3(e.g.)
 %Lennard Jones potential 
