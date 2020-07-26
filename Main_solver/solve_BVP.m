@@ -15,7 +15,7 @@ Gvector = error_for_BVP(output_IVP,L,n,Req,params);
 Gnorm = norm(Gvector);
 
 counter=0;
-    
+Dg = zeros(7*n-3);
 while counter <= params.nmax 
     counter = counter+1;
 
@@ -42,7 +42,7 @@ while counter <= params.nmax
     Dg_x0 = dG_x0 + dG_x1*(output_IVP.V1(:,4:end));
     Dg_lambda = dG_lambda + dG_x1*(output_IVP.W1);
     
-    Dg = zeros(7*n-3);
+    
     Dg(:,1:6*n-3) = Dg_x0 ; 
     % Put Dg_x0
     Dg(:,6*n-2:end) = Dg_lambda; 
@@ -134,7 +134,7 @@ end
 if Gnorm > params.tol
     error('BVP solver failed')
 end
-
+output_BVP.det_Dg = det(Dg);
 end
 
 

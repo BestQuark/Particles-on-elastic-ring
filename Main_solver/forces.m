@@ -18,7 +18,7 @@ function output_Forces = forces(config,n,Req,params)
    % symbolic values of locations (x,y)
    % along direction x1,y1, and x2,y2, only 2 directions
    
-    syms xi yi xj yj
+    syms xi yi xj yj;
     syms x1 y1 x2 y2;
     % distance Rij btw i,j particle
     Rij(x1,y1,x2,y2) = sqrt((x1-x2)^2 + (y1-y2)^2);
@@ -61,36 +61,37 @@ function output_Forces = forces(config,n,Req,params)
 %     a12 = diff(d1,y1);
 %     a21 = diff(d2,x1);
 %     a22 = diff(d2,y1);
-    d1 = diff(Vij,x2);
-    d2 = diff(Vij,y2);
+    d1 = diff(Vij,x1);
+    d2 = diff(Vij,y1);
     
-    a11 = diff(d1,x2);
-    a12 = diff(d1,y2);
-    a21 = diff(d2,x2);
-    a22 = diff(d2,y2);
+    a11 = diff(d1,x1);
+    a12 = diff(d1,y1);
+    a21 = diff(d2,x1);
+    a22 = diff(d2,y1);
 
-    f(xi,yi,xj,yj) = [d1(xi,yi,xj,yj); d2(xi,yi,xj,yj)];
+    f(xi,yi,xj,yj) = [d1(xi,yi,xj,yj) ;d2(xi,yi,xj,yj)];
     
     a(xi,yi,xj,yj) = [a11(xi,yi,xj,yj); a12(xi,yi,xj,yj); a21(xi,yi,xj,yj); a22(xi,yi,xj,yj)];
     
     % initialize output_Forces
     output_Forces.F = zeros(2,n);
+    output_Forces.F(:,2) = f(config.x1(1,2),config.x2(1,2),config.x1(1,1),config.x2(1,1));
     output_Forces.A = zeros(4,n);
+    output_Forces.A(:,2) = a(config.x1(1,2),config.x2(1,2),config.x1(1,1),config.x2(1,1));
 
-for i=1:n
-    for j=1:n
-          if i~=j
-             Fij =f(config.x1(1,i),config.x2(1,i),config.x1(1,j),config.x2(1,j));
-             Aij = a(config.x1(1,i),config.x2(1,i),config.x1(1,j),config.x2(1,j));
-             
-             output_Forces.F(:,i) = output_Forces.F(:,i) - Fij;
-             %output_Forces.F(:,j) = output_Forces.F(:,j) + Fij;
-             
-             output_Forces.A(:,i) = output_Forces.A(:,i) - Aij;
-             %output_Forces.A(:,j) = output_Forces.A(:,j) - Aij;
-          end  
-    end  
+% for i=1:n
+%     for j=1:n
+%           if i~=j
+%              Fij =f(config.x1(1,i),config.x2(1,i),config.x1(1,j),config.x2(1,j));
+%              Aij = a(config.x1(1,i),config.x2(1,i),config.x1(1,j),config.x2(1,j));
+%              
+%              output_Forces.F(:,i) = output_Forces.F(:,i) - Fij;
+%              %output_Forces.F(:,j) = output_Forces.F(:,j) + Fij;
+%              
+%              output_Forces.A(:,i) = output_Forces.A(:,i) - Aij;
+%              %output_Forces.A(:,j) = output_Forces.A(:,j) - Aij;
+%           end  
+%     end  
 end
 
-end
 

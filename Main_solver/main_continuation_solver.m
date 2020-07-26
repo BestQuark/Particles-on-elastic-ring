@@ -6,11 +6,11 @@ function output = main_continuation_solver
 % one at origin, one at the top of circle
 % Reqs = linspace(1/pi, 0, 50); 
 
-% x0 = [0 0 0; 0 1/pi pi];
-% p0 = [0 0 2*pi; 0 0 2*pi];
-% n = 2;
-% L = [0.5 0.5];
-% Reqs =  linspace(1/pi,2/pi,10);
+x0 = [0 0 0; 0 1/pi pi];
+p0 = [0 0 2*pi; 0 0 2*pi];
+n = 2;
+L = [0.5 0.5];
+Reqs =  linspace(0.5*1/pi,0.7*1/pi,10);
 % Reqs = [0.5*sqrt(2)/pi];
 % Reqs =  linspace(1/pi,0,10);
 
@@ -29,7 +29,7 @@ function output = main_continuation_solver
 % p0 = [0 0 2*pi; 0 0 2*pi];
 % n = 2;
 % L = [0.25 0.75];
-% Reqs = linspace(0.5*sqrt(2)/pi, sqrt(2)/pi, 10);
+Reqs = linspace(0.5*sqrt(2)/pi, 0.6*sqrt(2)/pi, 10);
 % Reqs = linspace(1/pi, 0, 50);
 
 % note: , the equilibrium quartile Req = 0.5*sqrt(2)/pi, particle 
@@ -39,12 +39,12 @@ function output = main_continuation_solver
 % refer to the 2-particles bifurcation diagram
 %-----------------------------------------------
 % EXAMPLE: 2 PARTICLES
-% one at origin, one at the 3rd quartile side of circle
-% x0 = [0 0 0; -0.5/pi 0.5/pi -pi/2];
-% p0 = [0 0 2*pi; 0 0 2*pi];
-% n = 2;
-% L = [0.75 0.25];
-% Reqs = linspace(0.5*sqrt(2)/pi, 0, 50);
+%one at origin, one at the 3rd quartile side of circle
+x0 = [0 0 0; -0.5/pi 0.5/pi -pi/2];
+p0 = [0 0 2*pi; 0 0 2*pi];
+n = 2;
+L = [0.75 0.25];
+% Reqs = linspace(0.5*1/pi, 1/pi, 50);
 
 % note: decrease Req, then the equilibrium quartile 
 % Req = 0.5*sqrt(2)/pi, particle moves towards the origin
