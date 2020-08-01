@@ -1,4 +1,4 @@
-function output_Forces = forces(config,n,Req,params)
+function output_Forces = forces(config,n,Req,e,params)
 %Input:
 % config: configurations of the particles, a struct stores x1,x2,x3
 %          p1,p2,p3...info
@@ -25,7 +25,7 @@ function output_Forces = forces(config,n,Req,params)
     
     % Case 1: Springlike potential proportional to d^2
     % Req a constant
-    Vij(x1,y1,x2,y2) = 1000*(Rij(x1,y1,x2,y2) - Req)^2;
+    Vij(x1,y1,x2,y2) = e*(Rij(x1,y1,x2,y2) - Req)^2;
 
     
     
@@ -33,7 +33,7 @@ function output_Forces = forces(config,n,Req,params)
     % assume epsilon = 0.3
     
      %epsilon = params.LJ_potential_epsilon;
-     %Vij(x1,y1,x2,y2) = epsilon * ((Req/Rij(x1,y1,x2,y2))^(12) - (Req/Rij(x1,y1,x2,y2))^6);
+     %Vij(x1,y1,x2,y2) = e/100 * ((Req/Rij(x1,y1,x2,y2))^(12) - (Req/Rij(x1,y1,x2,y2))^6);
     
     
  
@@ -78,7 +78,7 @@ function output_Forces = forces(config,n,Req,params)
     output_Forces.F(:,2) = f(config.x1(1,2),config.x2(1,2),config.x1(1,1),config.x2(1,1));
     output_Forces.A = zeros(4,n);
     output_Forces.A(:,2) = a(config.x1(1,2),config.x2(1,2),config.x1(1,1),config.x2(1,1));
-
+    output_Forces.distance = Rij(config.x1(1,2),config.x2(1,2),config.x1(1,1),config.x2(1,1));
 % for i=1:n
 %     for j=1:n
 %           if i~=j

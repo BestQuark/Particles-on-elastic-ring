@@ -1,4 +1,4 @@
-function G = error_for_BVP(config,L,n,Req,params)
+function G = error_for_BVP(config,L,n,Req,e,params)
 % ERROR_FOR_BVP Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -19,7 +19,7 @@ end_rod.p1 = config.p1(end,:);
 end_rod.p2 = config.p2(end,:);
 end_rod.p3 = config.p3(end,:);
 
-Forces = forces(initial_rod,n, Req,params).F;
+Forces = forces(initial_rod,n, Req,e,params).F;
 
 
 %first bc
@@ -50,7 +50,7 @@ for i=1:(n-1)
 end
 
 G(end) = sum(L)-1;
-G
+G;
 
 end
 

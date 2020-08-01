@@ -10,7 +10,8 @@ x0 = [0 0 0; 0 1/pi pi];
 p0 = [0 0 2*pi; 0 0 2*pi];
 n = 2;
 L = [0.5 0.5];
-Reqs =  linspace(0.5*1/pi,0.7*1/pi,10);
+Reqs =  linspace(sqrt(2)/(2*pi),0,20);
+
 % Reqs = [0.5*sqrt(2)/pi];
 % Reqs =  linspace(1/pi,0,10);
 
@@ -25,12 +26,12 @@ Reqs =  linspace(0.5*1/pi,0.7*1/pi,10);
 %-----------------------------------------------
 % EXAMPLE: 2 PARTICLES
 % one at origin, one at the 1st quartile side of circle
-% x0 = [0 0 0; 0.5/pi 0.5/pi pi/2];
-% p0 = [0 0 2*pi; 0 0 2*pi];
-% n = 2;
-% L = [0.25 0.75];
-Reqs = linspace(0.5*sqrt(2)/pi, 0.6*sqrt(2)/pi, 10);
-% Reqs = linspace(1/pi, 0, 50);
+x0 = [0 0 0; 0.5/pi 0.5/pi pi/2];
+p0 = [0 0 2*pi; 0 0 2*pi];
+n = 2;
+L = [0.25 0.75];
+Reqs = linspace(0.5*sqrt(2)/pi, 0.99*1/pi, 40);
+Reqs = [Reqs linspace(0.99*1/pi, 0, 40)];
 
 % note: , the equilibrium quartile Req = 0.5*sqrt(2)/pi, particle 
 % decrease Req --> move towards the origin
@@ -40,10 +41,10 @@ Reqs = linspace(0.5*sqrt(2)/pi, 0.6*sqrt(2)/pi, 10);
 %-----------------------------------------------
 % EXAMPLE: 2 PARTICLES
 %one at origin, one at the 3rd quartile side of circle
-x0 = [0 0 0; -0.5/pi 0.5/pi -pi/2];
-p0 = [0 0 2*pi; 0 0 2*pi];
-n = 2;
-L = [0.75 0.25];
+% x0 = [0 0 0; -0.5/pi 0.5/pi -pi/2];
+% p0 = [0 0 2*pi; 0 0 2*pi];
+% n = 2;
+% L = [0.75 0.25];
 % Reqs = linspace(0.5*1/pi, 1/pi, 50);
 
 % note: decrease Req, then the equilibrium quartile 
@@ -117,6 +118,60 @@ params = parameters;
 % Reqs =  linspace(1/pi,3,50);
 
 % Solve the continuation problem
-output = solve_continuation(x0,p0,n,L,s,Reqs, params);
+n=2;
+k = linspace(0, 4000, 21);
+
+color = ['b-','k-','r-.','g-'];
+x = [];
+x2 = [];
+y =[];
+for i=1:length(k)
+    e = k(i);
+    if 1 == 0
+            
+            fprintf("Bifurcation\n");
+            x0 = [0 0 0; 0 1/pi pi];
+            p0 = [0 0 2*pi; 0 0 2*pi];
+            L = [0.5 0.5];
+            Reqs =  linspace(1/pi,0,20);
+            output = solve_continuation(x0,p0,n,L,s,Reqs, e,params,cases,"Bifurcation");   
+    elseif 1 == 1
+        fprintf("Normal Squeeze\n");
+        x0 = [0 0 0; 0 1/pi pi];
+            p0 = [0 0 2*pi; 0 0 2*pi];
+            L = [0.5 0.5];
+            Reqs =  linspace(1/pi,0,20);
+            [output,distance,rbifur] = solve_continuation(x0,p0,n,L,s,Reqs, e,params,"Normal Squeeze");
+            if length(distance) > 0
+                for i=1:length(distance)
+                    x = [x distance(i)]
+                    x2 = [x2 rbifur(i)]
+                    y = [y e]
+           
+                end
+            end
+        elseif 1 == 0
+            fprintf("Stretch\n");
+            x0 = [0 0 0; 0 1/pi pi];
+            p0 = [0 0 2*pi; 0 0 2*pi];
+            L = [0.5 0.5];
+            Reqs =  linspace(1/pi,0.5,20);
+            output = solve_continuation(x0,p0,n,L,s,Reqs, e,params,cases,"Stretch");
+        elseif 1 == 0
+            fprintf("Sliding\n");
+            x0 = [0 0 0; 0.5/pi 0.5/pi pi/2];
+            p0 = [0 0 2*pi; 0 0 2*pi];
+            L = [0.25 0.75];
+            Reqs = linspace(0.5*sqrt(2)/pi, 0.99*1/pi, 40);
+            Reqs = [Reqs linspace(0.99*1/pi, 0, 40)];
+            output = solve_continuation(x0,p0,n,L,s,Reqs, e,params,cases,"Sliding");
+    end
 
 end
+figure(1)
+x = x(2:length(x));
+x2 = x2(2:length(x2));
+y = y(2:length(y));
+scatter(x,y)
+scatter(x2,y)
+    end

@@ -12,7 +12,7 @@ params.ode_options = odeset('AbsTol',1e-4,'RelTol',1e-4);
 params.detXtol = 1e-10;
 
 % maximium number of iterations to run BVP loop
-params.nmax = 200; 
+params.nmax = 70; 
 
 % error tolerance for solution of BVP
 params.tol = 1e-3; 

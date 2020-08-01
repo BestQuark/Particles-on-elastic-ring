@@ -1,4 +1,4 @@
-function output_BVP = solve_BVP(x0,p0,n,L,s,Req, params)
+function output_BVP = solve_BVP(x0,p0,n,L,s,Req,e,params,bifur_side)
 % This function contains the main loop used to solve the BVP using a
 % shooting method
 % Function Inputs:
@@ -9,21 +9,26 @@ function output_BVP = solve_BVP(x0,p0,n,L,s,Req, params)
 %   L  : length for every rod
 %   params : structure containing parameters
 % Function Outputs:
-
 output_IVP = solve_IVP2(x0,p0,n,L,s,params);
-Gvector = error_for_BVP(output_IVP,L,n,Req,params);
+Gvector = error_for_BVP(output_IVP,L,n,Req,e,params);
+if bifur_side == "Bifurcation" && Req<0.06 && Req >0.05
+        Gvector = Gvector + 100*[0.0000 -0.7044 0.0002 -0.0000 -0.0000 0.0000 0.0000 -0.7098 0.0003 -0.0023  0.0023];
+end
+   
 Gnorm = norm(Gvector);
-
+ 
 counter=0;
+
 Dg = zeros(7*n-3);
+k = [];
 while counter <= params.nmax 
     counter = counter+1;
 
     % Print variables of interest
-    fprintf('iteration: %.0f     error: %.10f \n',counter,Gnorm)
+    fprintf('iteration: %.0f     error: %.10f  at Req: %.10f   with epsilon: %.0f\n',counter,Gnorm,Req,e)
     
-    plot_function(output_IVP,n);
-    drawnow
+    %plot_function(output_IVP,n);
+    %drawnow
     if Gnorm <= params.tol
         output_BVP = output_IVP;
         output_BVP.x0 = x0;
@@ -31,11 +36,11 @@ while counter <= params.nmax
         output_BVP.L = L;
         break
     end
-    
-    force = forces(output_IVP,n,Req,params);
-    force.F
+
+    force = forces(output_IVP,n,Req,e,params);
+    force.F;
     % These "some_functions" must be replaced with the real functions
-    dG_x0 = dGx0(output_IVP,n,force) ;
+    dG_x0 = dGx0(output_IVP,n,force);
     dG_x1 = dGx1(output_IVP,n);
     dG_lambda = dGlambda(output_IVP,n);
     
@@ -80,9 +85,8 @@ while counter <= params.nmax
     for i=2:n
             initial_conditions(4+6*(i-2):3+6*(i-1)) = [x0(i,:) p0(i,:)]';
     end
-    
-    initial_conditions(6*n-2:end) = L;
-    
+    initial_conditions(6*n-2:end) = L(1:2);
+
     % L2 = zeros(1,n);
     % Initializes x02 and p02 beforehand
     x02 = zeros(n,3);
@@ -102,12 +106,12 @@ while counter <= params.nmax
             x02(i,:) = initial_conditions2(4+6*(i-2):6*(i-1))';
             p02(i,:) = initial_conditions2(7+6*(i-2):3+6*(i-1))';
         end
-    
+        
         L2 = initial_conditions2(6*n-2:end);
         
         
         output_IVP2 = solve_IVP2(x02,p02,n,L2,s,params);
-        Gvector2 = error_for_BVP(output_IVP2,L2,n,Req,params);
+        Gvector2 = error_for_BVP(output_IVP2,L2,n,Req,e,params);
         Gnorm2 = norm(Gvector2);
         % Gnorm2<Gnorm
         if 1==1
@@ -124,17 +128,18 @@ while counter <= params.nmax
             error('Line search failed')
         end 
             % Print determinant
-fprintf('\ndeterminant: %.0f\n',det(Dg))
     end
 
 end
 
-
+distance = sqrt((output_IVP.x1(1,2)-output_IVP.x1(1,1))^2 + (output_IVP.x2(1,2)-output_IVP.x2(1,1))^2);
 
 if Gnorm > params.tol
     error('BVP solver failed')
 end
 output_BVP.det_Dg = det(Dg);
+output_BVP.Dg = Dg;
+output_BVP.distance = distance;
 end
 
 
