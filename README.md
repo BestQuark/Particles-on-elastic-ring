@@ -34,7 +34,7 @@
 ### Thursday: 
 - Working on the error of the codes 
 - Fixed the forces and make it work
-## Forth Week
+## 4th Week
 ### Tuesday: 
 - Fixed the code with the sign of the potential. 
 
